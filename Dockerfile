@@ -2,7 +2,7 @@
 FROM eclipse-temurin:17-jdk-focal 
 
 #Maintainer of this image
-LABEL maintainer="Palak Bhawsar" 
+LABEL maintainer="Bhushan Shete" 
                                                                                                                             
 #Copying Jar file from target folder                                                                                       
 COPY target/web-services.jar web-services.jar  
