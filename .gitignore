@@ -32,6 +32,3 @@ build/
 ### VS Code ###
 .vscode/
 
-# Exclude all files in the target directory except for the web-services.jar file
-target/*
-!target/web-services.jar
