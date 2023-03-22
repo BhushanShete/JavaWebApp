@@ -2,58 +2,41 @@ pipeline {
     agent any
     
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('docker-hub-cred')
+		DOCKERHUB_CREDENTIALS=credentials('1beb4e63-e8f0-4b6c-9d91-48e1ac29b7ed')
 	}
  
  stages {
       stage('checkout') {
            steps {
              
-                git branch: 'main', url: 'https://github.com/palakbhawsar98/JavaWebApp'
+                git branch: 'main', url: 'https://github.com/BhushanShete/JavaWebApp.git'
              
           }
         }
   stage('Maven Build') {
            steps {
              
-                sh 'mvn clean install'             
+                sh 'mvn --version'             
           }
       
          post {
                 success {
-                    archiveArtifacts artifacts: '**/target/*.jar'
+                    archiveArtifacts artifacts: '**', followSymlinks: false
                 }
             }
         }
   stage('Maven Test') {
            steps {
              
-                sh 'mvn test'             
+                sh 'test mvn'             
           }
         }
-  
-     stage('Code Analysis') {
-          
-		  environment {
-             scannerHome = tool 'sonar4.8'
-          }
-
-          steps {
-            withSonarQubeEnv('sonar') {
-               sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=web-services \
-                   -Dsonar.projectName=web-services-repo \
-                   -Dsonar.projectVersion=1.0 \
-                   -Dsonar.sources=src/ \
-                   -Dsonar.java.binaries=target/'''
-            }
-          }
-        }	 
      stage('Build Docker Image') {
          
            steps {
               
                 sh 'docker build -t javawebapp:latest .' 
-                sh 'docker tag javawebapp palakbhawsar/javawebapp:latest'     
+                sh 'docker tag javawebapp bhushanshete/javawebapp:latest'     
           }
         }
      
@@ -65,7 +48,7 @@ pipeline {
 	
     stage('Push Image to dockerHUb') {
       steps {
-        sh 'docker push palakbhawsar/javawebapp:latest'
+        sh 'docker push bhushanshete/javawebapp:latest'
       }
 	  post {
     always {
@@ -82,4 +65,3 @@ pipeline {
    
       
  }
- 
