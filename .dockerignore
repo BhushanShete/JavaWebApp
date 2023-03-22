@@ -1,15 +1,3 @@
-# Ignore editor and IDE files
-.vscode/
-.idea/
-
-# Ignore build artifacts
-*.log
-*.jar
-*.war
-
-# Ignore source control files
-.git/
-.gitignore
 
 # Exclude all files in the target directory except for the web-services.jar file
 target/*
