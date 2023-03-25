@@ -41,7 +41,7 @@
 	</dependencies>
 
 	<build>
-	   <finalName>web-services</finalName>  
+	   <finalName>BhushanShete_JavaWebApp</finalName>  
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
